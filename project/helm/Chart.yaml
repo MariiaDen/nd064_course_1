@@ -1,0 +1,9 @@
+apiVersion: v1
+name: techtrends
+description: Building a Helm Chart
+keywords:
+  - techtrends
+version: 1.0.0
+maintainers:
+  - name: mariiaden
+    email: mariia.denysenko93@gmail.com
