@@ -1,11 +1,65 @@
 ## Docker commands used to build the application 
-# TODO: insert the docker build command
+$ docker build -t techtrends/app.py .
 
 ## Docker commands used to run the application
-# TODO: insert the docker run command
+$ docker run -d -p 3111:3111 techtrends/app.py
+bc5f98b86fddb4a9acb00198b992abb851bf3e5fa6c1b1941e848441c32475bb
+
+$ docker ps
+CONTAINER ID   IMAGE               COMMAND           CREATED          STATUS          PORTS                    NAMES
+bc5f98b86fdd   techtrends/app.py   "python app.py"   17 seconds ago   Up 15 seconds   0.0.0.0:3111->3111/tcp   exciting_shockley
+
+$ docker tag techtrends/app.py mariiaden/techtrends
+
+$ docker images
+REPOSITORY             TAG       IMAGE ID       CREATED          SIZE
+techtrends             latest    b3472c2d5ea3   18 minutes ago   907MB
+mariiaden/techtrends   latest    b3472c2d5ea3   18 minutes ago   907MB
+techtrends/app.py      latest    b3472c2d5ea3   18 minutes ago   907MB
+docker101tutorial      latest    2bf2b4dd76a6   3 hours ago      28.5MB
+alpine/git             latest    0deb7380d708   4 weeks ago      27.4MB
+
+$ docker push mariiaden/techtrends
 
 ## Docker commands used to get the application logs
-# TODO: insert the docker logs command
+## have taken techtrends while mariiaden/techtrends have been pushed - takes too long
+$ docker ps
+CONTAINER ID   IMAGE               COMMAND           CREATED         STATUS         PORTS                    NAMES
+6e15e9ef78a8   techtrends:latest   "python app.py"   3 minutes ago   Up 3 minutes   0.0.0.0:7111->3111/tcp   hungry_hawking
+
+$ docker logs 6e15e9ef78a8
 
 ## Logs from the container running the TechTrends application
-# TODO: paste logs from the Docker container 
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+INFO:werkzeug:2021-11-18 21:02:06,575:  * Running on http://0.0.0.0:3111/ (Press CTRL+C to quit)
+INFO:werkzeug:2021-11-18 21:02:23,457: 172.17.0.1 - - [18/Nov/2021 21:02:23] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:2021-11-18 21:02:23,559: 172.17.0.1 - - [18/Nov/2021 21:02:23] "GET /static/css/main.css HTTP/1.1" 200 -
+INFO:werkzeug:2021-11-18 21:02:23,646: 172.17.0.1 - - [18/Nov/2021 21:02:23] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:2021-11-18 21:04:11,377: 172.17.0.1 - - [18/Nov/2021 21:04:11] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:2021-11-18 21:04:11,420: 172.17.0.1 - - [18/Nov/2021 21:04:11] "GET /static/css/main.css HTTP/1.1" 200 -
+INFO:werkzeug:2021-11-18 21:04:11,599: 172.17.0.1 - - [18/Nov/2021 21:04:11] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:app:2021-11-18 21:04:15,221: The "About Us" page is retrieved.
+INFO:werkzeug:2021-11-18 21:04:15,224: 172.17.0.1 - - [18/Nov/2021 21:04:15] "GET /about HTTP/1.1" 200 -
+INFO:werkzeug:2021-11-18 21:04:47,172: 172.17.0.1 - - [18/Nov/2021 21:04:47] "GET / HTTP/1.1" 200 -
+INFO:app:2021-11-18 21:06:40,704: The "About Us" page is retrieved.
+INFO:werkzeug:2021-11-18 21:06:40,705: 172.17.0.1 - - [18/Nov/2021 21:06:40] "GET /about HTTP/1.1" 200 -
+INFO:werkzeug:2021-11-18 21:06:41,966: 172.17.0.1 - - [18/Nov/2021 21:06:41] "GET / HTTP/1.1" 200 -
+INFO:app:2021-11-18 21:06:43,003: Article 2020 CNCF Annual Report retrieved!
+INFO:werkzeug:2021-11-18 21:06:43,008: 172.17.0.1 - - [18/Nov/2021 21:06:43] "GET /1 HTTP/1.1" 200 -
+INFO:werkzeug:2021-11-18 21:06:45,521: 172.17.0.1 - - [18/Nov/2021 21:06:45] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:2021-11-18 21:06:46,573: 172.17.0.1 - - [18/Nov/2021 21:06:46] "GET /create HTTP/1.1" 200 -
+INFO:app:2021-11-18 21:06:58,068: An article Something new is created
+INFO:werkzeug:2021-11-18 21:06:58,069: 172.17.0.1 - - [18/Nov/2021 21:06:58] "POST /create HTTP/1.1" 302 -
+INFO:werkzeug:2021-11-18 21:06:58,078: 172.17.0.1 - - [18/Nov/2021 21:06:58] "GET / HTTP/1.1" 200 -
+INFO:app:2021-11-18 21:07:14,617: Article 2020 CNCF Annual Report retrieved!
+INFO:werkzeug:2021-11-18 21:07:14,617: 172.17.0.1 - - [18/Nov/2021 21:07:14] "GET /1 HTTP/1.1" 200 -
+INFO:werkzeug:2021-11-18 21:07:15,917: 172.17.0.1 - - [18/Nov/2021 21:07:15] "GET / HTTP/1.1" 200 -
+INFO:app:2021-11-18 21:07:20,518: Article 2020 CNCF Annual Report retrieved!
+INFO:werkzeug:2021-11-18 21:07:20,519: 172.17.0.1 - - [18/Nov/2021 21:07:20] "GET /1 HTTP/1.1" 200 -
+ERROR:app:2021-11-18 21:07:24,373: Article does not exist! Page 404 is returned
+INFO:werkzeug:2021-11-18 21:07:24,376: 172.17.0.1 - - [18/Nov/2021 21:07:24] "GET /116 HTTP/1.1" 404 -
+
